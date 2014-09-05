@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Knockout Example</title>
+    <link href="css/stylesheets/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="css/stylesheets/jquery-ui/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="css/stylesheets/screen.css" rel="stylesheet" />
+
+    <script src="javascripts/jquery-1.10.2.js"></script>
+    <script src="javascripts/jquery-ui.js"></script>
+    <script src="javascripts/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <div id=main-container>
+        <!-- Games in left section -->
+        <div id="left-section">
+            <div>
+                <ul class="games-list" data-bind="foreach: games">
+                    <li data-bind="text: name, event: {'dragstart': $root.setTransferProperties}"
+                        draggable="true">
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="wrapper">
+            <h1>Favorite Player App</h1>
+
+            <!-- Existing Add Player Functionality -->
+
+            Please enter your favourite Cricket / Football / Hockey players
+            <div class="old-func-panel">
+                <button data-bind="click: addPlayer">Add New</button>
+                <table class="panels">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Game</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: players">
+                        <tr>
+                            <td><input type="text" data-bind="value: firstName" /></td>
+                            <td><input type="text" data-bind="value: lastName" /></td>
+                            <td>
+                                <select data-bind="options: $root.games, value: game, optionsValue: $data , optionsText: 'name'"></select>
+                                <button class="inline-button" data-bind="click: $root.removePlayer">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- New Drag and Drop Game -->
+            <h1 style="margin-top:15px;">OR</h1>
+            Drop Game Here:
+            <div class="drop-panel" data-bind="event: { dragover:allowDrop, drop: $root.performDrop}">
+                <table class="panels">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Game</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: playersDD">
+                        <tr>
+                            <td><span data-bind="text: firstName" /></td>
+                            <td><span data-bind="text: lastName" /></td>
+                            <td>
+                                <span data-bind="text: game().name"></span>
+                            </td>
+                            <td><button class="inline-button" data-bind="click: $root.removePlayerDD">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- JSON textarea showing records as JSON -->
+            <div>
+                <h1>JSON:</h1>
+                <textarea id="jsonResultArea" data-bind="value: ko.toJSON(combinedList)" readonly></textarea>
+            </div>
+
+            <!-- Submit JSON to server -->
+            <div>
+                <button class="save-button" data-bind="click: save">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Player Dialog for Drag and Drop -->
+    <div id="addPlayerDialog" title="Add Player" style="display:none;">
+        <ul class="table">
+            <li><label>Game</label>
+                <span data-bind="text: newPlayer.game().name"></span>
+            </li>
+
+            <li>
+                <label>First Name</label>
+                <input type="text" data-bind="value: newPlayer.firstName" />
+            </li>
+            <li>
+                <label>Last Name</label>
+                <input type="text" data-bind="value: newPlayer.lastName" />
+            </li>
+            <li>
+                <input type="button" class="wide-button" value="Save" data-bind="click: savePlayerDD" />
+                <input type="button" class="wide-button" value="Cancel" data-bind="click: cancelDialog" />
+            </li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var AppScope = function () {
+
+            function Player(data) {
+                this.id = ko.observable(data.id);
+                this.firstName = ko.observable(data.firstName);
+                this.lastName = ko.observable(data.lastName);
+                this.game = ko.observable(data.game);
+            }
+
+            function Game(data) {
+                this.id = ko.observable(data.id);
+                this.name = ko.observable(data.name);
+            }
+
+            //View Model
+            function PlayersViewModel() {
+                var self = this;
+                self.games = ko.observableArray([
+                                                new Game({ id: 0, name: "Cricket" }),
+                                                new Game({ id: 1, name: "Football" }),
+                                                new Game({ id: 2, name: "Hockey" })
+                ]);
+
+                self.players = ko.observableArray([
+                ]);
+                self.playersDD = ko.observableArray([
+                ]);
+
+                self.addPlayer = function () {
+                    self.players.push(new Player({ firstName: "", lastName: "", game: self.games()[0] }));
+                };
+
+                self.addPlayerDD = function (player) {
+                    self.playersDD.push(player);
+                };
+
+                self.removePlayer = function (player) {
+                    self.players.remove(player);
+                };
+
+                self.removePlayerDD = function (player) {
+                    self.playersDD.remove(player);
+                };
+
+                self.combinedList = ko.computed(function () {
+                    return self.players().concat(self.playersDD());
+                });
+
+                self.save = function () {
+                    $.ajax("/api/players", {
+                        data: JSON.stringify(ko.toJSON(self.combinedList)),
+                        type: "post", contentType: "application/json",
+                        success: function (result) { alert("Players Saved Successfully"); },
+                        error: function (result) { alert("Error Saving Players"); }
+                    });
+                };
+
+                //Drag and Drop
+                self.newPlayer = new Player({ firstName: "", lastName: "", game: self.games()[0] });
+
+                self.setTransferProperties = function (data, event) {
+                    event.originalEvent.dataTransfer.setData("Text", data.id());
+                    return true;
+                };
+
+                self.allowDrop = function (data, event) {
+                    event.preventDefault();
+                };
+
+                self.performDrop = function (data, event) {
+                    var gameId = event.originalEvent.dataTransfer.getData("Text");
+                    var droppedGame = ko.utils.arrayFirst(self.games(), function (game) {
+                        return game.id() == gameId;
+                    });
+                    self.newPlayer.game(droppedGame);
+                    $("#addPlayerDialog").dialog({
+                        width: 400,
+                        height: 225
+                    });
+                    return true;
+                };
+
+                self.savePlayerDD = function () {
+                    var newPlayer = new Player({
+                        firstName: self.newPlayer.firstName(),
+                        lastName: self.newPlayer.lastName(),
+                        game: self.newPlayer.game()
+                    });
+                    self.addPlayerDD(newPlayer);
+                    self.cancelDialog();
+                }
+
+                self.cancelDialog = function () {
+                    $("#addPlayerDialog").dialog("close");
+                    self.newPlayer.firstName("");
+                    self.newPlayer.lastName("");
+                    self.newPlayer.game(self.games()[0]);
+                }
+                //
+            }
+            
+            ko.applyBindings(new PlayersViewModel());
+        }();
+    </script>
+</body>
+</html>

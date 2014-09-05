@@ -1,0 +1,221 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 9, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container {
+  margin: 10px auto;
+  width: 960px;
+}
+/* line 14, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container #left-section {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  float: left;
+  width: 200px;
+  border: 1px solid gray;
+  background-color: lightyellow;
+  z-index: 1000;
+}
+/* line 24, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container #left-section .games-list {
+  margin-top: 20px;
+}
+/* line 26, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container #left-section .games-list li {
+  margin: 10px;
+  padding: 7px;
+  font-size: 16px;
+  text-align: center;
+  color: aliceblue;
+  background-color: #428bca;
+  border: 1px solid #357ebd;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+/* line 39, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container #wrapper {
+  width: 760px;
+  margin-left: 200px;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: 1px solid gray;
+  background-color: aliceblue;
+  overflow-y: auto;
+}
+/* line 51, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+/* line 57, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
+/* line 63, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .old-func-panel, #main-container .drop-panel {
+  border: 1px solid gray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #DBEDFF;
+  padding: 10px;
+}
+/* line 69, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .old-func-panel button, #main-container .drop-panel button {
+  margin-left: 10px;
+  width: 90px;
+}
+/* line 74, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .old-func-panel .inline-button, #main-container .drop-panel .inline-button {
+  margin-left: 10px;
+  width: 65px;
+}
+/* line 79, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .old-func-panel table, #main-container .drop-panel table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin: 10px;
+}
+/* line 83, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .old-func-panel table th, #main-container .drop-panel table th {
+  min-width: 165px;
+  font-weight: bold;
+}
+/* line 89, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .old-func-panel .game-filter-label, #main-container .drop-panel .game-filter-label {
+  margin-left: 20px;
+  font-weight: bold;
+}
+/* line 96, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container .drop-panel {
+  margin: 10px 0;
+  min-height: 100px;
+}
+/* line 101, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#main-container #jsonResultArea {
+  background-color: lightsteelblue;
+  border: 1px solid darkslategray;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+  width: 100%;
+  height: 100px;
+  padding: 0;
+  overflow: auto;
+}
+
+/* line 114, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#addPlayerDialog {
+  font-size: 80%;
+}
+/* line 118, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#addPlayerDialog ul.table {
+  display: table;
+}
+/* line 120, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#addPlayerDialog ul.table li {
+  display: table-row;
+}
+/* line 122, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#addPlayerDialog ul.table li label, #addPlayerDialog ul.table li input, #addPlayerDialog ul.table li select, #addPlayerDialog ul.table li span {
+  display: table-cell;
+  margin: 4px;
+  padding: 2px;
+}
+/* line 127, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+#addPlayerDialog ul.table li label {
+  font-weight: bold;
+}
+
+/* line 133, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+.wide-button {
+  margin-top: 15px;
+  width: 65px;
+}
+
+/* line 138, D:/Xanadu/VS_Projects/PanelsExampleDD/PanelsExampleDD/css/sass/screen.scss */
+.save-button {
+  margin-top: 15px;
+  padding: 5px;
+  width: 75px;
+}
