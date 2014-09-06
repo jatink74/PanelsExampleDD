@@ -99,10 +99,17 @@
     <Content Include="css\stylesheets\print.css" />
     <Content Include="css\stylesheets\screen.css" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
-    <Content Include="javascripts\jquery-1.10.2.js" />
-    <Content Include="javascripts\jquery-ui.js" />
-    <Content Include="javascripts\knockout-3.2.0.js" />
+    <Content Include="index-non-amd.html" />
+    <Content Include="index-amd.html" />
+    <Content Include="js\lib\domReady.js" />
+    <Content Include="js\lib\jquery-1.10.2.js" />
+    <Content Include="js\lib\jquery-ui.js" />
+    <Content Include="js\lib\knockout-3.2.0.js" />
+    <Content Include="js\lib\require.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\models\game.js" />
+    <Content Include="js\models\player.js" />
+    <Content Include="js\models\players-view-model.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
